@@ -24,7 +24,7 @@ public class MyList<TItem> : IEnumerable<TItem>
 	{
 		if (Count == m_array.Length)
 		{
-
+			System.Array.Resize(ref m_array, m_array.Length * 2);
 		}
 		m_array[Count++] = item;
 	}
@@ -41,7 +41,11 @@ public class MyList<TItem> : IEnumerable<TItem>
 
 	public void Clear()
 	{
-
+		for (int i = 0; i < m_array.Length; i++)
+		{
+			m_array[i] = default;
+		}
+		Count = 0;
 	}
 
 	public IEnumerator<TItem> GetEnumerator()

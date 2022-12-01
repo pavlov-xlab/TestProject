@@ -1,86 +1,34 @@
 ﻿class Program
 {
-	public interface IInter<T>
+	public class Character : IComparer<Character>
 	{
-		T GetValue();
-	}
+		public int level;
+		public float fuel;
 
-	public class MyClass : IInter<int>
-	{
-		private int m_value = 1;
-		public MyClass()
+		int IComparer<Character>.Compare(Character? x, Character? y)
 		{
-
-		}
-
-		public int value => m_value;
-
-		public void SetValue(int value)
-		{
-			this.m_value = value;
-		}
-
-		public int GetValue()
-		{
-			return m_value;
+			return x.level.CompareTo(y.level);
 		}
 	}
 
 	static void Main()
 	{
-		// MyList<int> myList = new MyList<int>();
-		// myList.Add(1);
-		// myList.Add(2);
-		// myList.Add(3);
-		// // myList.Remove(2);
-		// // myList.RemoveAt(0);
-
-		// for (int i = 0; i < myList.Count; i++)
-		// {
-		// 	Console.WriteLine(myList[i]);
-		// }
-
-		// foreach (int item in myList)
-		// {
-		// 	Console.WriteLine(item);
-		// }
-
-		// Print(0);
-		// Print(0.1f);
-		// List<int> list = new List<int>();
-		// list.Add(0);
-		// list.Add(5);
-		// list.Add(10);
-		// foreach (int item in list)
-		// {
-		// 	Console.WriteLine(item);
-		// }
-
-		Animals animal = Animals.Lion;
-		switch(animal)
-		{
-			case Animals.Cat : Console.WriteLine("select cat"); break;
-			case Animals.Dog: Console.WriteLine("select dog"); break;
-			case Animals.Lion: Console.WriteLine("select lion"); break;
-		}
-
-		Print(animal);
-		Print(Animals.Monkey);
+		List<Character> list = new List<Character>();
+		list.Sort();
 	}
 
-	
-
-	public static void Print(Animals p)
+	public static int SortInt(int i1, int i2)
 	{
-		Console.WriteLine(p);
+		if (i1 == i2) return 0;
+		if (i1 > i2) return -1;
+		else return 1;
 	}
 
-	public enum Animals
+	public static int SortCharacterByLevel(Character p1, Character p2)
 	{
-		Cat,
-		Dog,
-		Monkey,
-		Lion,
+		return p1.level.CompareTo(p2.level);
 	}
+
+
 
 }
